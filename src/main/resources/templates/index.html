@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Employee</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+<div th:if="${!employees.isEmpty()}">
+    <a href="">Add new employee</a>
+    <table th:object="${employees}" id="userTable" border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>JobTitle</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee :${employees}">
+            <td th:text="${employee.getId()}"></td>
+            <td th:text="${employee.getName()}"></td>
+            <td th:text="${employee.getSurname()}"></td>
+            <td th:text="${employee.getJobTitle()}"></td>
+            <td th:text="${employee.getSalary()}"></td>
+            <td>
+            <button onclick="">Delete</button>
+            <button onclick="">Edit</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
