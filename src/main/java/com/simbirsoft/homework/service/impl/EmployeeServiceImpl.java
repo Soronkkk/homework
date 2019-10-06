@@ -50,16 +50,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void removeEmployee(Long id) {
-        employees.remove(id);
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getId() == id) {
+                employees.remove(i);
+                return;
+            }
+        }
     }
 
     @Override
-    public void updateEmployee(Employee updEmployee) {
-        for (Employee employee : employees) {
-            if (employee.equals(updEmployee)) {
-                employee = updEmployee;
+    public void updateEmployee(int id, Employee updEmployee) {
+        Employee employee;
+        for (int i = 0; i < employees.size(); i++) {
+            employee = employees.get(i);
+            if (employee.getId() == id) {
+                employees.set(i, updEmployee);
+                return;
             }
         }
+
     }
 
 

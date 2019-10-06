@@ -1,3 +1,4 @@
+
 $(document).ready(
     function () {
 
@@ -15,8 +16,11 @@ $(document).ready(
 
                 success: function (result) {
                     if (result.status == "success") {
-                        $('#getResultDiv ul').empty();
+                        $('#tbody-id tbody').empty();
                          console.log(JSON.stringify(result.data));
+
+                         document.querySelector('#tbody-id').innerHTML = '';
+
                         $.each(result.data,
                             function printEmployee(i, employee) {
 
@@ -40,14 +44,6 @@ $(document).ready(
                                 cell.innerHTML = employee.jobTitle;
                                 row.appendChild(cell);
                                 cell = document.createElement('td');
-                                var button = document.createElement('button');
-                                button.classList.add("btn");
-                                button.classList.add("btn-link");
-                                button.setAttribute('onclick', "editEmployee(this.parentNode.parentNode);");
-                                button.innerText = "Edit";
-                                cell.appendChild(button);
-                                row.appendChild(cell);
-                                cell = document.createElement('td');
                                 button = document.createElement('button');
                                 button.classList.add("btn");
                                 button.classList.add("btn-link");
@@ -55,6 +51,7 @@ $(document).ready(
                                 button.innerText = "Delete";
                                 cell.appendChild(button);
                                 row.appendChild(cell);
+
                                 document.getElementById("tbody-id").appendChild(row);
                             });
                         console.log("Success: ", result);

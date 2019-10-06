@@ -27,11 +27,11 @@ $(document).ready(
                 data: JSON.stringify(formData),
                 dataType: 'json',
                 success: function (result) {
+
                     if (result.status == "success") {
                         $("#postResultDiv").html(
                             "" + result.data.name
-                            + "Post Successfully! <br>"
-                            + "---> Congrats !!" + "</p>");
+                            + "Post Successfully! <br></p>");
                     } else {
                         $("#postResultDiv").html("<strong>Error</strong>");
                     }
