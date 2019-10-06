@@ -3,7 +3,7 @@ package com.simbirsoft.homework.model;
 
 public class Employee {
 
-    private int id;
+    private Long id;
     private String name;
     private String surname;
     private int salary;
@@ -12,7 +12,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String name, String surname, int salary, String jobTitle) {
+    public Employee(Long id, String name, String surname, int salary, String jobTitle) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -20,11 +20,11 @@ public class Employee {
         this.jobTitle = jobTitle;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

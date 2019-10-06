@@ -13,5 +13,5 @@ public interface EmployeeService {
 
     public void removeEmployee(Long id);
 
-    public void updateEmployee(int id, Employee employee);
+    public void updateEmployee(Employee employee);
 }

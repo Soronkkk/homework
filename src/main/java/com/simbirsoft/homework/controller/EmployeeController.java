@@ -20,7 +20,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public ResponseEntity<Object> addEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Object> addEmployee(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
 //        ServiceResponse<Employee> serviceResponse = new ServiceResponse<>("success", employee);
 //        return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
@@ -28,19 +28,19 @@ public class EmployeeController {
     }
 
     @GetMapping("/getEmployees")
-    public ResponseEntity<Object> getAllEmployee(){
+    public ResponseEntity<Object> getAllEmployee() {
         ServiceResponse<List<Employee>> serviceResponse = new ServiceResponse<>("success", employeeService.findAll());
         return new ResponseEntity<>(serviceResponse, HttpStatus.OK);
     }
 
     @PutMapping("/updateEmployee")
-    public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee){
-        employeeService.updateEmployee(employee.getId(), employee);
-         return getAllEmployee();
+    public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee) {
+        employeeService.updateEmployee(employee);
+        return getAllEmployee();
     }
 
     @DeleteMapping("/deleteEmployee/{id}")
-    public ResponseEntity<Object> deleteEmployee(@PathVariable long id ){
+    public ResponseEntity<Object> deleteEmployee(@PathVariable long id) {
         employeeService.removeEmployee(id);
         return getAllEmployee();
     }

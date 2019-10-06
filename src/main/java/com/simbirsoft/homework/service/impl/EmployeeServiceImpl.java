@@ -18,10 +18,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     static {
         employees = new ArrayList<>();
-        employees.add(new Employee(1, "John", "Adams", 15000, "Sales advisor"));
-        employees.add(new Employee(2, "John", "Adams", 60000, "Store manager"));
-        employees.add(new Employee(3, "John", "Adams", 40000, "Core manager"));
-        employees.add(new Employee(4, "John", "Adams", 35000, "Department manager"));
+        employees.add(new Employee(1L, "John", "Adams", 15000, "Sales advisor"));
+        employees.add(new Employee(2L, "John", "Adams", 60000, "Store manager"));
+        employees.add(new Employee(3L, "John", "Adams", 40000, "Core manager"));
+        employees.add(new Employee(4L, "John", "Adams", 35000, "Department manager"));
     }
 
     @Override
@@ -45,6 +45,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployee(Employee employee) {
+        for (int i = 0; i <employees.size() ; i++) {
+            if(employees.get(i).getId() == employee.getId()){
+                return;
+            }
+        }
         employees.add(employee);
     }
 
@@ -59,17 +64,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void updateEmployee(int id, Employee updEmployee) {
+    public void updateEmployee(Employee updEmployee) {
         Employee employee;
         for (int i = 0; i < employees.size(); i++) {
             employee = employees.get(i);
-            if (employee.getId() == id) {
+            if (employee.getId() == updEmployee.getId()) {
                 employees.set(i, updEmployee);
                 return;
             }
         }
 
     }
-
 
 }
