@@ -1,8 +1,9 @@
 package com.simbirsoft.homework.model;
 
+
 public class Employee {
 
-    private Long id;
+    private int id;
     private String name;
     private String surname;
     private int salary;
@@ -11,7 +12,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long id, String name, String surname, int salary, String jobTitle) {
+    public Employee(int id, String name, String surname, int salary, String jobTitle) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -19,11 +20,11 @@ public class Employee {
         this.jobTitle = jobTitle;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

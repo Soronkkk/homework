@@ -16,10 +16,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     static {
         employees = Arrays.asList(
-                new Employee(1L, "John", "Adams", 15000, "Sales advisor"),
-                new Employee(2L, "John", "Adams", 60000, "Store manager"),
-                new Employee(3L, "John", "Adams", 40000, "Core manager"),
-                new Employee(4L, "John", "Adams", 35000, "Department manager")
+                new Employee(1, "John", "Adams", 15000, "Sales advisor"),
+                new Employee(2, "John", "Adams", 60000, "Store manager"),
+                new Employee(3, "John", "Adams", 40000, "Core manager"),
+                new Employee(4, "John", "Adams", 35000, "Department manager")
         );
     }
 
