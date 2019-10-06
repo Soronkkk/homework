@@ -16,6 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static List<Employee> employees;
 
 
+    //todo перейти на работу с БД
     static {
         employees = new ArrayList<>();
         employees.add(new Employee(1L, "John", "Adams", 15000, "Sales advisor"));
@@ -43,6 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
+    //fixme переделать
     @Override
     public void addEmployee(Employee employee) {
         for (int i = 0; i <employees.size() ; i++) {
