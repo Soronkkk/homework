@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +33,7 @@ public class EmployeeController {
     @GetMapping("/getEmployees")
     public ResponseEntity<Object> getAllEmployee(){
         ServiceResponse<List<Employee>> serviceResponse = new ServiceResponse<>("success", employeeService.findAll());
-        return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
+        return new ResponseEntity<>(serviceResponse, HttpStatus.OK);
     }
 
 //    @PostMapping("/employees/add")

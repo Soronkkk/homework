@@ -4,6 +4,7 @@ import com.simbirsoft.homework.model.Employee;
 import com.simbirsoft.homework.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,21 +15,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private static List<Employee> employees;
 
-    static {
-        employees = Arrays.asList(
-                new Employee(1, "John", "Adams", 15000, "Sales advisor"),
-                new Employee(2, "John", "Adams", 60000, "Store manager"),
-                new Employee(3, "John", "Adams", 40000, "Core manager"),
-                new Employee(4, "John", "Adams", 35000, "Department manager")
-        );
-    }
 
+    static {
+        employees = new ArrayList<>();
+        employees.add(new Employee(1, "John", "Adams", 15000, "Sales advisor"));
+        employees.add(new Employee(2, "John", "Adams", 60000, "Store manager"));
+        employees.add(new Employee(3, "John", "Adams", 40000, "Core manager"));
+        employees.add(new Employee(4, "John", "Adams", 35000, "Department manager"));
+    }
 
     @Override
     public Employee findEmployeeById(Long id) {
-        Employee result = null ;
-        for (Employee employee:employees ) {
-            if(employee.getId()==id){
+        Employee result = null;
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
                 result = employee;
             }
         }
@@ -55,8 +55,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void updateEmployee(Employee updEmployee) {
-        for (Employee employee: employees) {
-            if (employee.equals(updEmployee)){
+        for (Employee employee : employees) {
+            if (employee.equals(updEmployee)) {
                 employee = updEmployee;
             }
         }

@@ -60,14 +60,4 @@ public class Employee {
         this.jobTitle = jobTitle;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", salary=" + salary +
-                ", jobTitle='" + jobTitle + '\'' +
-                '}';
-    }
 }

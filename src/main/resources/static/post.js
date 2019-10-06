@@ -12,11 +12,11 @@ $(document).ready(
 
             // PREPARE FORM DATA
             var formData = {
-                employeeId: $("#employeeId").val(),
-                employeeName: $("#employeeName").val(),
-                employeeSurname: $("#employeeSurname").val(),
-                employeeSalary: $("#employeeSalary").val(),
-                employeeJobTitle: $("#employeeJobTitle").val()
+                id: $("#employeeId").val(),
+                name: $("#employeeName").val(),
+                surname: $("#employeeSurname").val(),
+                salary: $("#employeeSalary").val(),
+                jobTitle: $("#employeeJobTitle").val()
             }
 
             // DO POST
@@ -29,7 +29,7 @@ $(document).ready(
                 success: function (result) {
                     if (result.status == "success") {
                         $("#postResultDiv").html(
-                            "" + result.data.employeeName
+                            "" + result.data.name
                             + "Post Successfully! <br>"
                             + "---> Congrats !!" + "</p>");
                     } else {
