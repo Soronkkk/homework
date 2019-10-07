@@ -44,6 +44,7 @@ public class EmployeeController {
         return new ResponseEntity<>(serviceResponse, HttpStatus.OK);
     }
 
+    //fixme сделать так, чтобы при неуказанном id не добавлялся новый элемент в бд
     @PutMapping("/updateEmployee")
     public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee) {
         employeeDataService.save(employee);
