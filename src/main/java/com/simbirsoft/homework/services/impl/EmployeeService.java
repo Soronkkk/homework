@@ -1,9 +1,10 @@
-package com.simbirsoft.homework.service;
+package com.simbirsoft.homework.services.impl;
 
 import com.simbirsoft.homework.model.Employee;
 
 import java.util.List;
 
+@Deprecated
 public interface EmployeeService {
     public Employee findEmployeeById(Long id);
 

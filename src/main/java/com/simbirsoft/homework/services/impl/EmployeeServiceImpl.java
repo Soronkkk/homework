@@ -1,22 +1,18 @@
-package com.simbirsoft.homework.service.impl;
+package com.simbirsoft.homework.services.impl;
 
 import com.simbirsoft.homework.model.Employee;
-import com.simbirsoft.homework.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
+@Deprecated
 public class EmployeeServiceImpl implements EmployeeService {
 
     private static List<Employee> employees;
 
 
-    //todo перейти на работу с БД
     static {
         employees = new ArrayList<>();
         employees.add(new Employee(1L, "John", "Adams", 15000, "Sales advisor"));
@@ -44,7 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
-    //fixme переделать
     @Override
     public void addEmployee(Employee employee) {
         for (int i = 0; i <employees.size() ; i++) {

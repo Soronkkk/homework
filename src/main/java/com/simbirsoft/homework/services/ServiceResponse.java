@@ -1,4 +1,4 @@
-package com.simbirsoft.homework.service;
+package com.simbirsoft.homework.services;
 
 public class ServiceResponse<T> {
     private String status;

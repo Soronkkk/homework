@@ -1,11 +1,26 @@
 package com.simbirsoft.homework.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "EMPLOYEES")
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
+
+    @Column(name = "NAME", nullable = false)
     private String name;
+
+    @Column(name = "SURNAME", nullable = false)
     private String surname;
+
+    @Column(name = "SALARY", nullable = false)
     private int salary;
+
+    @Column(name = "JOB_TITLE", nullable = false)
     private String jobTitle;
 
     public Employee() {
