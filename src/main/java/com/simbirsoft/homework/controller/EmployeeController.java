@@ -22,8 +22,6 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public ResponseEntity<Object> addEmployee(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
-//        ServiceResponse<Employee> serviceResponse = new ServiceResponse<>("success", employee);
-//        return new ResponseEntity<Object>(serviceResponse, HttpStatus.OK);
         return getAllEmployee();
     }
 
