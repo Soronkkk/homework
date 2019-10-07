@@ -44,10 +44,9 @@ public class EmployeeController {
         return new ResponseEntity<>(serviceResponse, HttpStatus.OK);
     }
 
-    //todo дописать реализацию под бд
     @PutMapping("/updateEmployee")
     public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee) {
-        //employeeService.updateEmployee(employee);
+        employeeDataService.save(employee);
         return getAllEmployee();
     }
 
