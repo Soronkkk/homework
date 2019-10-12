@@ -4,15 +4,28 @@ import com.simbirsoft.homework.model.Employee;
 
 import java.util.List;
 
-@Deprecated
 public interface EmployeeService {
-    public Employee findEmployeeById(Long id);
 
+    /**
+     * Возвращает список всех сотрудников.
+     *
+     * @return список сотрудников
+     */
     public List<Employee> findAll();
 
-    public void addEmployee(Employee employee);
+    /**
+     * Удаляет сотрудника по идентификатору.
+     *
+     * @param id индентификатор
+     */
+    public void deleteById(Long id);
 
-    public void removeEmployee(Long id);
+    /**
+     * Сохраняет созданного сотрудника.
+     *
+     * @param employee сотрудник
+     * @return сохраненный сотрудник
+     */
+    public Employee save(Employee employee);
 
-    public void updateEmployee(Employee employee);
 }

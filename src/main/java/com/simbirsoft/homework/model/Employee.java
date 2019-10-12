@@ -4,22 +4,29 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "EMPLOYEES")
-public class Employee {
+public class Employee extends AbstractIdEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false, nullable = false)
-    private Long id;
-
+    /**
+     * Имя сотрудника.
+     */
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    /**
+     * Фамилия сотрудника.
+     */
     @Column(name = "SURNAME", nullable = false)
     private String surname;
 
+    /**
+     * Заработная плата.
+     */
     @Column(name = "SALARY", nullable = false)
     private int salary;
 
+    /**
+     * Должность.
+     */
     @Column(name = "JOB_TITLE", nullable = false)
     private String jobTitle;
 
@@ -27,19 +34,11 @@ public class Employee {
     }
 
     public Employee(Long id, String name, String surname, int salary, String jobTitle) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.surname = surname;
         this.salary = salary;
         this.jobTitle = jobTitle;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

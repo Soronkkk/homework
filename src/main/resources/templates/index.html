@@ -8,10 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="/get.js"></script>
-    <script src="/post.js"></script>
-    <script src="/delete.js"></script>
-    <script src="/put.js"></script>
+    <script src="methods.js"></script>
 </head>
 <body>
 <div id="postResultDiv" align="center"></div>
@@ -50,22 +47,32 @@
 
         <button id="updateEmployee" type="button" class="btn btn-primary">Update employee</button>
 
-        <table class="table table-hover table-bordered">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Salary</th>
-                <th>Job title</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-        <tbody id="tbody-id">
-
-
-        </tbody>
-        </table>
+        <div th:if="${!employees.isEmpty()}">
+            <table th:object="${employees}" id="userTable" border="1" class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>JobTitle</th>
+                    <th>Salary</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employee :${employees}">
+                    <td th:text="${employee.getId()}"></td>
+                    <td th:text="${employee.getName()}"></td>
+                    <td th:text="${employee.getSurname()}"></td>
+                    <td th:text="${employee.getJobTitle()}"></td>
+                    <td th:text="${employee.getSalary()}"></td>
+                    <td>
+                        <button onclick="deleteEmployee(this.parentNode.parentNode);" class="btn btn-link">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </body>

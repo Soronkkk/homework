@@ -1,15 +1,15 @@
-package com.simbirsoft.homework.services;
+package com.simbirsoft.homework.data;
 
-public class ServiceResponse<T> {
+public class Response<T> {
     private String status;
     private T data;
 
-    public ServiceResponse(String status, T data) {
+    public Response(String status, T data) {
         this.status = status;
         this.data = data;
     }
 
-    public ServiceResponse() {
+    public Response() {
     }
 
     public String getStatus() {
