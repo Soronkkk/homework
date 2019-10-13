@@ -21,7 +21,7 @@ public interface EmployeeService {
     public void deleteById(Long id);
 
     /**
-     * Сохраняет созданного сотрудника.
+     * Сохраняет сотрудника.
      *
      * @param employee сотрудник
      * @return сохраненный сотрудник

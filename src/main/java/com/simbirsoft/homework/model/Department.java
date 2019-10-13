@@ -27,6 +27,15 @@ public class Department extends AbstractIdEntity {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
+    public Department() {
+    }
+
+    public Department(Long id, String description, String name) {
+        super(id);
+        this.description = description;
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
     }

@@ -35,18 +35,25 @@ public class Employee extends AbstractIdEntity {
      * Сотрудник принадлежит в одному отделу.
      */
     @ManyToOne
-    @JoinColumn(name = "department_id", nullable = false)
+    @JoinColumn(name = "department_id", referencedColumnName = "ID")
     private Department department;
 
     public Employee() {
     }
 
-    public Employee(Long id, String name, String surname, int salary, String jobTitle, Department department) {
+    public Employee(Long id, String name, String surname, int salary, String jobTitle) {
         super(id);
         this.name = name;
         this.surname = surname;
         this.salary = salary;
         this.jobTitle = jobTitle;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
         this.department = department;
     }
 

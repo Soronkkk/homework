@@ -26,13 +26,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeJpaRepository.deleteById(id);
     }
 
+
     @Transactional
     public Employee save(Employee employee) {
         return employeeJpaRepository.save(employee);
-    }
-
-    public List<Employee> findByName(String name){
-        return  employeeJpaRepository.findByName(name);
     }
 
 }
