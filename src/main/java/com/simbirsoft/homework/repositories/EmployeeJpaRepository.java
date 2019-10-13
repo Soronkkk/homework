@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// TODO: 14.10.2019 В репозиториях описать методы как посредством @Query, так и посредством названия метода.
 @Repository
 public interface EmployeeJpaRepository extends JpaRepository<Employee, Long> {
     /**

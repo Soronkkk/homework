@@ -4,6 +4,7 @@ import com.simbirsoft.homework.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+// TODO: 14.10.2019  В репозиториях описать методы как посредством @Query, так и посредством названия метода.
 @Repository
 public interface DepartmentJpaRepository extends JpaRepository<Department, Long> {
     /**

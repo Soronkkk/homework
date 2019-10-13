@@ -8,72 +8,131 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="methods.js"></script>
+    <script src="employeeMethods.js"></script>
 </head>
 <body>
 <div id="postResultDiv" align="center"></div>
 <div class="container">
-    <h2>Employee form</h2>
-    <form id="employeeForm">
-        <div class="form-group">
-            <label for="employeeId">Employee ID:</label>
-            <input type="text" class="form-control" id="employeeId" placeholder="Enter employee ID" name="employeeId">
-        </div>
-        <div class="form-group">
-            <label for="employeeName">Employee name:</label>
-            <input type="text" class="form-control" id="employeeName" placeholder="Enter employee name"
-                   name="employeeName">
-        </div>
-        <div class="form-group">
-            <label for="employeeSurname">Employee surname:</label>
-            <input type="text" class="form-control" id="employeeSurname" placeholder="Enter employee surname"
-                   name="employeeSurname">
-        </div>
-        <div class="form-group">
-            <label for="employeeSalary">Employee salary:</label>
-            <input type="text" class="form-control" id="employeeSalary" placeholder="Enter employee salary"
-                   name="employeeSalary">
-        </div>
-        <div class="form-group">
-            <label for="employeeJobTitle">Employee job title:</label>
-            <input type="text" class="form-control" id="employeeJobTitle" placeholder="Enter employee job title"
-                   name="employeeJobTitle">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <br/>
     <div>
-        <button id="getEmployees" type="button" class="btn btn-primary">Get employees</button>
+        <div style="display:inline-table">
+            <h2>Employee form</h2>
+            <form id="employeeForm">
+                <div class="form-group">
+                    <label for="employeeId">Employee ID:</label>
+                    <input type="text" class="form-control" id="employeeId" placeholder="Enter employee ID"
+                           name="employeeId">
+                </div>
+                <div class="form-group">
+                    <label for="employeeName">Employee name:</label>
+                    <input type="text" class="form-control" id="employeeName" placeholder="Enter employee name"
+                           name="employeeName">
+                </div>
+                <div class="form-group">
+                    <label for="employeeSurname">Employee surname:</label>
+                    <input type="text" class="form-control" id="employeeSurname" placeholder="Enter employee surname"
+                           name="employeeSurname">
+                </div>
+                <div class="form-group">
+                    <label for="employeeSalary">Employee salary:</label>
+                    <input type="text" class="form-control" id="employeeSalary" placeholder="Enter employee salary"
+                           name="employeeSalary">
+                </div>
+                <div class="form-group">
+                    <label for="employeeJobTitle">Employee job title:</label>
+                    <input type="text" class="form-control" id="employeeJobTitle" placeholder="Enter employee job title"
+                           name="employeeJobTitle">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit employee</button>
+            </form>
+        </div>
+        <div style="display:inline-table">
+            <div th:if="${!employees.isEmpty()}">
+                <button id="updateEmployee" type="button" class="btn btn-primary">Update employee</button>
+                <table th:object="${employees}" id="userTable" border="1" class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>JobTitle</th>
+                        <th>Salary</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="employee :${employees}">
+                        <td th:text="${employee.getId()}"></td>
+                        <td th:text="${employee.getName()}"></td>
+                        <td th:text="${employee.getSurname()}"></td>
+                        <td th:text="${employee.getJobTitle()}"></td>
+                        <td th:text="${employee.getSalary()}"></td>
+                        <td th:text="${employee.getDepartment().getName()}"></td>
+                        <td>
+                            <button onclick="deleteEmployee(this.parentNode.parentNode);" class="btn btn-link">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-        <button id="updateEmployee" type="button" class="btn btn-primary">Update employee</button>
+    </br>
 
-        <div th:if="${!employees.isEmpty()}">
-            <table th:object="${employees}" id="userTable" border="1" class="table table-hover table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>JobTitle</th>
-                    <th>Salary</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="employee :${employees}">
-                    <td th:text="${employee.getId()}"></td>
-                    <td th:text="${employee.getName()}"></td>
-                    <td th:text="${employee.getSurname()}"></td>
-                    <td th:text="${employee.getJobTitle()}"></td>
-                    <td th:text="${employee.getSalary()}"></td>
-                    <td>
-                        <button onclick="deleteEmployee(this.parentNode.parentNode);" class="btn btn-link">Delete</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <div>
+        <div style="display:inline-table">
+            <h2>Department form</h2>
+            <form id="departmentForm">
+                <div class="form-group">
+                    <label for="departmentId">Department ID:</label>
+                    <input type="text" class="form-control" id="departmentId" placeholder="Enter department ID"
+                           name="departmentId">
+                </div>
+                <div class="form-group">
+                    <label for="departmentName">Department name:</label>
+                    <input type="text" class="form-control" id="departmentName" placeholder="Enter department name"
+                           name="departmentName">
+                </div>
+                <div class="form-group">
+                    <label for="departmentDescription">Employee ID:</label>
+                    <input type="text" class="form-control" id="departmentDescription"
+                           placeholder="Enter department description"
+                           name="departmentDescription">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit department</button>
+            </form>
+        </div>
+        <div style="display: inline-table">
+            <div th:if="${!departments.isEmpty()}">
+                <button id="updateDepartment" type="button" class="btn btn-primary">Update department</button>
+                <table th:object="${departments}" id="departmentTable" border="1"
+                       class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="department :${departments}">
+                        <td th:text="${department.getId()}"></td>
+                        <td th:text="${department.getName()}"></td>
+                        <td th:text="${department.getDescription()}"></td>
+                        <td>
+                            <button onclick="" class="btn btn-link">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+

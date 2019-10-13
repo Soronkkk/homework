@@ -1,9 +1,9 @@
 package com.simbirsoft.homework.controller;
 
+import com.simbirsoft.homework.services.DepartmentServiceImpl;
 import com.simbirsoft.homework.services.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,11 +12,19 @@ public class ViewController {
 
     @Autowired
     private EmployeeServiceImpl employeeServiceImpl;
+    @Autowired
+    private DepartmentServiceImpl departmentServiceImpl;
 
+    /**
+     * Возвращает модель с данными для отображения на странице.
+     *
+     * @return модель с данными сотрудников и отделов.
+     */
     @GetMapping("/")
-    public ModelAndView homePage(Model model) {
+    public ModelAndView employeesPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("employees", employeeServiceImpl.findAll());
+        modelAndView.addObject("departments", departmentServiceImpl.findAll());
         modelAndView.setViewName("index");
         return modelAndView;
     }
