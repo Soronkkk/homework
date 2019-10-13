@@ -1,7 +1,7 @@
 package com.simbirsoft.homework.services;
 
 import com.simbirsoft.homework.model.Employee;
-import com.simbirsoft.homework.repositories.EmployeeCrudRepository;
+import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import com.simbirsoft.homework.services.impl.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,22 +11,28 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+
     @Autowired
-    private EmployeeCrudRepository employeeCrudRepository;
+    private EmployeeJpaRepository employeeJpaRepository;
+
 
     @Transactional
     public List<Employee> findAll() {
-        return employeeCrudRepository.findAll();
+        return employeeJpaRepository.findAll();
     }
 
     @Transactional
     public void deleteById(Long id) {
-        employeeCrudRepository.deleteById(id);
+        employeeJpaRepository.deleteById(id);
     }
 
     @Transactional
     public Employee save(Employee employee) {
-        return employeeCrudRepository.save(employee);
+        return employeeJpaRepository.save(employee);
+    }
+
+    public List<Employee> findByName(String name){
+        return  employeeJpaRepository.findByName(name);
     }
 
 }
