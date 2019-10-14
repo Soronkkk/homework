@@ -16,6 +16,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentJpaRepository departmentJpaRepository;
 
     @Transactional
+    public Department findByDescription(String description) {
+        return departmentJpaRepository.findByDescription(description);
+    }
+
+    @Transactional
     public List<Department> findAll() {
         return departmentJpaRepository.findAll();
     }

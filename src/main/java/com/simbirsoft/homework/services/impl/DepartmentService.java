@@ -7,6 +7,14 @@ import java.util.List;
 public interface DepartmentService {
 
     /**
+     * Возвращает отдел по описанию.
+     *
+     * @param description описание отдела.
+     * @return отдел.
+     */
+    public Department findByDescription(String description);
+
+    /**
      * Возвращает список всех отделов.
      *
      * @return список отделов.

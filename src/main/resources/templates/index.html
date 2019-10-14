@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Employee</title>
+    <title>Homework</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="employeeMethods.js"></script>
+    <script src="departmentMethods.js"></script>
 </head>
 <body>
 <div id="postResultDiv" align="center"></div>
@@ -102,7 +103,7 @@
                            name="departmentName">
                 </div>
                 <div class="form-group">
-                    <label for="departmentDescription">Employee ID:</label>
+                    <label for="departmentDescription">Department description:</label>
                     <input type="text" class="form-control" id="departmentDescription"
                            placeholder="Enter department description"
                            name="departmentDescription">
@@ -129,7 +130,7 @@
                         <td th:text="${department.getName()}"></td>
                         <td th:text="${department.getDescription()}"></td>
                         <td>
-                            <button onclick="" class="btn btn-link">Delete</button>
+                            <button onclick="deleteDepartment(this.parentNode.parentNode);" class="btn btn-link">Delete</button>
                         </td>
                     </tr>
                     </tbody>

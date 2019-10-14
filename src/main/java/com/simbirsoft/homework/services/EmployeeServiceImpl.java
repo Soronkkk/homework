@@ -15,6 +15,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeJpaRepository employeeJpaRepository;
 
+    @Transactional
+    public List<Employee> findBySalary(int salary) {
+        return employeeJpaRepository.findBySalary(salary);
+    }
+
+    @Transactional
+    public List<Employee> findByJobTitle(String jobTitle) {
+        return employeeJpaRepository.findByJobTitle(jobTitle);
+    }
+
+    @Transactional
+    public List<Employee> findByName(String name) {
+        return employeeJpaRepository.findByName(name);
+    }
 
     @Transactional
     public List<Employee> findAll() {

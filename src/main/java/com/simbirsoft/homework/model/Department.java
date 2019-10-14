@@ -13,18 +13,19 @@ import java.util.List;
 public class Department extends AbstractIdEntity {
 
     /**
+     * Название отдела.
+     */
+//    @NotBlank(message = "Name is mandatory")
+    @Column(name = "NAME", nullable = false)
+    private String name;
+
+    /**
      * Описание отдела.
      */
-    @NotBlank(message = "Description is mandatory")
+//    @NotBlank(message = "Description is mandatory")
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
-    /**
-     * Название отдела.
-     */
-    @NotBlank(message = "Name is mandatory")
-    @Column(name = "NAME", nullable = false)
-    private String name;
 
     /**
      * Связь один ко многим.
@@ -36,10 +37,10 @@ public class Department extends AbstractIdEntity {
     public Department() {
     }
 
-    public Department(Long id, String description, String name) {
+    public Department(Long id, String name, String description) {
         super(id);
-        this.description = description;
         this.name = name;
+        this.description = description;
     }
 
     public String getDescription() {

@@ -1,17 +1,30 @@
 package com.simbirsoft.homework.repositories;
 
 import com.simbirsoft.homework.model.Department;
+import com.simbirsoft.homework.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-// TODO: 14.10.2019  В репозиториях описать методы как посредством @Query, так и посредством названия метода.
+import java.util.List;
+
 @Repository
 public interface DepartmentJpaRepository extends JpaRepository<Department, Long> {
     /**
      * Выполняет поиск отдела по имени.
      *
-     * @param name название отдела
-     * @return отдел
+     * @param name название отдела.
+     * @return отдел.
      */
     Department findByName(String name);
+
+    /**
+     * Выполняет поиск отдела по его описанию.
+     *
+     * @param description описание отдела.
+     * @return отдел.
+     */
+    @Query("select d from Department d where d.description = :description")
+    Department findByDescription(String description);
+
 }
