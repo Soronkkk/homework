@@ -2,8 +2,8 @@ package com.simbirsoft.homework.controller;
 
 import com.simbirsoft.homework.data.Response;
 import com.simbirsoft.homework.model.Employee;
-import com.simbirsoft.homework.services.DepartmentServiceImpl;
-import com.simbirsoft.homework.services.EmployeeServiceImpl;
+import com.simbirsoft.homework.services.impl.DepartmentServiceImpl;
+import com.simbirsoft.homework.services.impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

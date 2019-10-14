@@ -1,8 +1,8 @@
-package com.simbirsoft.homework.services;
+package com.simbirsoft.homework.services.impl;
 
 import com.simbirsoft.homework.model.Employee;
 import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
-import com.simbirsoft.homework.services.impl.EmployeeService;
+import com.simbirsoft.homework.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

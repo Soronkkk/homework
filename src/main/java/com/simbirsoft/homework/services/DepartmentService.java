@@ -1,4 +1,4 @@
-package com.simbirsoft.homework.services.impl;
+package com.simbirsoft.homework.services;
 
 import com.simbirsoft.homework.model.Department;
 

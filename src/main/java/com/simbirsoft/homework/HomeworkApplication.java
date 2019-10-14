@@ -1,15 +1,14 @@
 package com.simbirsoft.homework;
 
-import com.simbirsoft.homework.model.Employee;
-import com.simbirsoft.homework.services.EmployeeServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class HomeworkApplication {
 
     public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("admin"));
         SpringApplication.run(HomeworkApplication.class, args);
     }
 

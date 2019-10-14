@@ -1,5 +1,8 @@
 $(document).ready(
+
     function () {
+
+
 
         // SUBMIT FORM
         $("#departmentForm").submit(function (event) {
