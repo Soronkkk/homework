@@ -1,8 +1,13 @@
 package com.simbirsoft.homework.model;
 
+import com.simbirsoft.homework.constants.RoleConstants;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSON")
@@ -32,6 +37,12 @@ public class User extends AbstractIdEntity {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
+    /**
+     * Роли пользователя.
+     */
+    @Column(name = "ROLE", nullable = false)
+    private List<Role> roles;
+
     public User() {
     }
 
@@ -41,7 +52,9 @@ public class User extends AbstractIdEntity {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.roles = new ArrayList<Role>(Collections.singleton(RoleConstants.ROLE_USER));
     }
+
 
     public String getLogin() {
         return login;
