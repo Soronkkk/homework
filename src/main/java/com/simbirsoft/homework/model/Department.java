@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -14,12 +15,14 @@ public class Department extends AbstractIdEntity {
     /**
      * Описание отдела.
      */
+    @NotBlank(message = "Description is mandatory")
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
     /**
      * Название отдела.
      */
+    @NotBlank(message = "Name is mandatory")
     @Column(name = "NAME", nullable = false)
     private String name;
 

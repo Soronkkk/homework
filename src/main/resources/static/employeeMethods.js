@@ -23,7 +23,7 @@ $(document).ready(
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "employees",
+                url: "employees/" + $("#employeeDepartment").val(),
                 data: JSON.stringify(formData),
                 dataType: 'json',
                 success: function (result) {
@@ -47,15 +47,15 @@ $(document).ready(
 
     })
 
-    function deleteEmployee(row) {
-        $.ajax({
-            type: "DELETE",
-            url: "employees/" + row.children[0].innerText,
-            success: function (data) {
-                row.remove();
-            }
-        });
-    }
+function deleteEmployee(row) {
+    $.ajax({
+        type: "DELETE",
+        url: "employees/" + row.children[0].innerText,
+        success: function (data) {
+            row.remove();
+        }
+    });
+}
 
 $(document).ready(
     function () {
@@ -82,7 +82,7 @@ $(document).ready(
             $.ajax({
                 type: "PUT",
                 contentType: "application/json",
-                url: "employees/",
+                url: "employees/" + $("#employeeDepartment").val(),
                 data: JSON.stringify(formData),
                 dataType: 'json',
                 success: function (result) {

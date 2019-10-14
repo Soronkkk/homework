@@ -1,6 +1,7 @@
 package com.simbirsoft.homework.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -9,12 +10,14 @@ public class Employee extends AbstractIdEntity {
     /**
      * Имя сотрудника.
      */
+    @NotBlank(message = "Name is mandatory")
     @Column(name = "NAME", nullable = false)
     private String name;
 
     /**
      * Фамилия сотрудника.
      */
+    @NotBlank(message = "Surname is mandatory")
     @Column(name = "SURNAME", nullable = false)
     private String surname;
 
@@ -27,12 +30,13 @@ public class Employee extends AbstractIdEntity {
     /**
      * Должность.
      */
+    @NotBlank(message = "Job title is mandatory")
     @Column(name = "JOB_TITLE", nullable = false)
     private String jobTitle;
 
     /**
      * Связь многие к одному.
-     * Сотрудник принадлежит в одному отделу.
+     * Сотрудник принадлежит к одному отделу.
      */
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "ID")

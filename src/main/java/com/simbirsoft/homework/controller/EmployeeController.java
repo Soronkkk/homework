@@ -13,7 +13,6 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: 14.10.2019  Добавить валидацию данных с фронта, использовать аннотацию @Valid.
 @RestController
 public class EmployeeController {
 
@@ -29,23 +28,19 @@ public class EmployeeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // TODO: 14.10.2019  дописать логику добавления сотрудника с отделом
-    @PostMapping("/employees")
-    public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee employee) {
+    @PostMapping("/employees/{department}")
+    public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee employee, @PathVariable String department) {
         if (employee.getId() == null) {
-            employee.setDepartment(departmentServiceImpl.findByName("Develop"));
+            employee.setDepartment(departmentServiceImpl.findByName(department));
             employeeServiceImpl.save(employee);
-        } else {
-            return ResponseEntity.badRequest().body(employee);
         }
         return getObjectResponseEntity();
     }
 
-    // TODO: 14.10.2019  дописать логику обновления сотрудника с отделом
-    @PutMapping("/employees")
-    public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee) {
+    @PutMapping("/employees/{department}")
+    public ResponseEntity<Object> updateEmployee(@Valid @RequestBody Employee employee, @PathVariable String department) {
         if (employee.getId() != null && employee.getId() > 0) {
-            employee.setDepartment(departmentServiceImpl.findByName("Develop"));
+            employee.setDepartment(departmentServiceImpl.findByName(department));
             employeeServiceImpl.save(employee);
         } else {
             return ResponseEntity.badRequest().body(employee);
