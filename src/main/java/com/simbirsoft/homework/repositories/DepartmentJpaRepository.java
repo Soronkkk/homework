@@ -1,12 +1,9 @@
 package com.simbirsoft.homework.repositories;
 
 import com.simbirsoft.homework.model.Department;
-import com.simbirsoft.homework.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface DepartmentJpaRepository extends JpaRepository<Department, Long> {

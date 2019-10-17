@@ -15,14 +15,14 @@ public class Department extends AbstractIdEntity {
     /**
      * Название отдела.
      */
-//    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Name is mandatory")
     @Column(name = "NAME", nullable = false)
     private String name;
 
     /**
      * Описание отдела.
      */
-//    @NotBlank(message = "Description is mandatory")
+    @NotBlank(message = "Description is mandatory")
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 

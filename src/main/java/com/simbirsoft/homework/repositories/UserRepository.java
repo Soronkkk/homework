@@ -7,6 +7,12 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    /**
+     * Поиск пользователя по логину.
+     *
+     * @param login логин пользователя.
+     * @return пользователь.
+     */
     Optional<User> findByLogin(String login);
 
 }

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Deprecated
 @Entity
 @Table(name = "ROLE")
 public class Role extends AbstractIdEntity {

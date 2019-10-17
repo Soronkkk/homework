@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Transactional
-    public Department findByName(String name){
+    public Department findByName(String name) {
         return departmentJpaRepository.findByName(name);
     }
 

@@ -23,7 +23,7 @@ public class ViewController {
      */
     @GetMapping("/")
     public ModelAndView employeesPage(
-         Authentication authentication
+            Authentication authentication
     ) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("employees", employeeServiceImpl.findAll());
