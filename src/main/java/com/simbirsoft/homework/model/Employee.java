@@ -1,6 +1,8 @@
 package com.simbirsoft.homework.model;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -12,7 +14,7 @@ public class Employee extends AbstractIdEntity {
     /**
      * Имя сотрудника.
      */
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "{error.employee.name}")
     @Size(min=2, max=30)
     @Column(name = "name", nullable = false)
     private String name;
@@ -20,7 +22,7 @@ public class Employee extends AbstractIdEntity {
     /**
      * Фамилия сотрудника.
      */
-    @NotBlank(message = "Surname is mandatory")
+    @NotBlank(message = "{error.employee.surname}")
     @Length(max = 1024, message = "Max length")
     @Column(name = "surname", nullable = false)
     private String surname;
@@ -28,7 +30,7 @@ public class Employee extends AbstractIdEntity {
     /**
      * Название отдела, в котором работает сотрудник.
      */
-    @NotBlank(message = "Department name is mandatory")
+    @NotBlank(message = "{error.employee.departmentName}")
     @Length(max = 2048, message = "Max length")
     @Column(name = "department_name", nullable = false)
     private String departmentName;
@@ -36,14 +38,14 @@ public class Employee extends AbstractIdEntity {
     /**
      * Заработная плата.
      */
-    @Min(value = 0)
+    @Min(value = 0, message = "{error.employee.salary}")
     @Column(name = "salary", nullable = false)
     private int salary;
 
     /**
      * Должность.
      */
-    @NotBlank(message = "Job title is mandatory")
+    @NotBlank(message = "{error.employee.jobTitle}")
     @Length(max = 1024, message = "Max length")
     @Column(name = "job_title", nullable = false)
     private String jobTitle;

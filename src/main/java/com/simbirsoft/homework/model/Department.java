@@ -17,7 +17,7 @@ public class Department extends AbstractIdEntity {
     /**
      * Название отдела.
      */
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "{error.department.name}")
     @Length(max = 1024, message = "Max length")
     @Column(name = "name", nullable = false)
     private String name;
@@ -25,7 +25,7 @@ public class Department extends AbstractIdEntity {
     /**
      * Описание отдела.
      */
-    @NotBlank(message = "Description is mandatory")
+    @NotBlank(message = "{error.department.description}")
     @Length(max = 1024, message = "Max length")
     @Column(name = "description", nullable = false)
     private String description;

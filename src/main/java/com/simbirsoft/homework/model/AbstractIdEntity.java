@@ -5,6 +5,7 @@ import javax.persistence.*;
 @MappedSuperclass
 public abstract class AbstractIdEntity {
 
+
     /**
      * Идентификатор.
      */

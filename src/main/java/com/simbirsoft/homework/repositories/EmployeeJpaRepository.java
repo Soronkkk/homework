@@ -17,9 +17,21 @@ public interface EmployeeJpaRepository extends JpaRepository<Employee, Long> {
      */
     List<Employee> findByName(String name);
 
+    /**
+     * Выполняет поиск сотрудников по должности.
+     *
+     * @param jobTitle должность сотрудника.
+     * @return сотрудники.
+     */
     @Query("select e from Employee e where e.jobTitle = :jobTitle")
     List<Employee> findByJobTitle(String jobTitle);
 
+    /**
+     * Выполняет поиск сотрудников по заработной плате.
+     *
+     * @param salary заработная плата.
+     * @return сотрудники.
+     */
     @Query("select e from  Employee e where e.salary = :salary")
     List<Employee> findBySalary(int salary);
 }
