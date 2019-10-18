@@ -16,14 +16,15 @@ $(document).ready(
                 name: $("#employeeName").val(),
                 surname: $("#employeeSurname").val(),
                 salary: $("#employeeSalary").val(),
-                jobTitle: $("#employeeJobTitle").val()
+                jobTitle: $("#employeeJobTitle").val(),
+                departmentName: $("#employeeDepartment").val()
             }
 
             // DO POST
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "employees/" + $("#employeeDepartment").val(),
+                url: "employees",
                 data: JSON.stringify(formData),
                 dataType: 'json',
                 success: function (result) {
@@ -75,14 +76,15 @@ $(document).ready(
                 name: $("#employeeName").val(),
                 surname: $("#employeeSurname").val(),
                 salary: $("#employeeSalary").val(),
-                jobTitle: $("#employeeJobTitle").val()
+                jobTitle: $("#employeeJobTitle").val(),
+                departmentName: $("#employeeDepartment").val()
             }
 
             // DO PUT
             $.ajax({
                 type: "PUT",
                 contentType: "application/json",
-                url: "employees/" + $("#employeeDepartment").val(),
+                url: "employees",
                 data: JSON.stringify(formData),
                 dataType: 'json',
                 success: function (result) {

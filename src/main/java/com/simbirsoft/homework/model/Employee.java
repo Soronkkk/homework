@@ -1,7 +1,9 @@
 package com.simbirsoft.homework.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -11,27 +13,39 @@ public class Employee extends AbstractIdEntity {
      * Имя сотрудника.
      */
     @NotBlank(message = "Name is mandatory")
-    @Column(name = "NAME", nullable = false)
+    @Size(min=2, max=30)
+    @Column(name = "name", nullable = false)
     private String name;
 
     /**
      * Фамилия сотрудника.
      */
     @NotBlank(message = "Surname is mandatory")
-    @Column(name = "SURNAME", nullable = false)
+    @Length(max = 1024, message = "Max length")
+    @Column(name = "surname", nullable = false)
     private String surname;
+
+    /**
+     * Название отдела, в котором работает сотрудник.
+     */
+    @NotBlank(message = "Department name is mandatory")
+    @Length(max = 2048, message = "Max length")
+    @Column(name = "department_name", nullable = false)
+    private String departmentName;
 
     /**
      * Заработная плата.
      */
-    @Column(name = "SALARY", nullable = false)
+    @Min(value = 0)
+    @Column(name = "salary", nullable = false)
     private int salary;
 
     /**
      * Должность.
      */
     @NotBlank(message = "Job title is mandatory")
-    @Column(name = "JOB_TITLE", nullable = false)
+    @Length(max = 1024, message = "Max length")
+    @Column(name = "job_title", nullable = false)
     private String jobTitle;
 
     /**
@@ -45,12 +59,13 @@ public class Employee extends AbstractIdEntity {
     public Employee() {
     }
 
-    public Employee(Long id, String name, String surname, int salary, String jobTitle) {
+    public Employee(Long id, String name, String surname, int salary, String jobTitle, String departmentName) {
         super(id);
         this.name = name;
         this.surname = surname;
         this.salary = salary;
         this.jobTitle = jobTitle;
+        this.departmentName = departmentName;
     }
 
     public Department getDepartment() {
@@ -93,4 +108,11 @@ public class Employee extends AbstractIdEntity {
         this.jobTitle = jobTitle;
     }
 
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
 }

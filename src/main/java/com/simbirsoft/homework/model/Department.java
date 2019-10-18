@@ -1,6 +1,8 @@
 package com.simbirsoft.homework.model;
 
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -16,14 +18,16 @@ public class Department extends AbstractIdEntity {
      * Название отдела.
      */
     @NotBlank(message = "Name is mandatory")
-    @Column(name = "NAME", nullable = false)
+    @Length(max = 1024, message = "Max length")
+    @Column(name = "name", nullable = false)
     private String name;
 
     /**
      * Описание отдела.
      */
     @NotBlank(message = "Description is mandatory")
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Length(max = 1024, message = "Max length")
+    @Column(name = "description", nullable = false)
     private String description;
 
 

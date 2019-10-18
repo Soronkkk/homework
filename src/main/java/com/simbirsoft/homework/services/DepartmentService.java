@@ -6,27 +6,36 @@ import java.util.List;
 
 public interface DepartmentService {
 
+
+    /**
+     * Возвращает отдел по названию.
+     *
+     * @param name название отдела.
+     * @return отдел.
+     */
+    Department findByName(String name);
+
     /**
      * Возвращает отдел по описанию.
      *
      * @param description описание отдела.
      * @return отдел.
      */
-    public Department findByDescription(String description);
+    Department findByDescription(String description);
 
     /**
      * Возвращает список всех отделов.
      *
      * @return список отделов.
      */
-    public List<Department> findAll();
+    List<Department> findAll();
 
     /**
      * Удаляет отдел по идентификатору.
      *
      * @param id идентификатор отдела.
      */
-    public void deleteById(Long id);
+    void deleteById(Long id);
 
 
     /**
@@ -35,6 +44,6 @@ public interface DepartmentService {
      * @param department отдел.
      * @return сохраненный отдел.
      */
-    public Department save(Department department);
+    Department save(Department department);
 
 }

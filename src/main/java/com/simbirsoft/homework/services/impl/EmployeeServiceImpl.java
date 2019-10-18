@@ -1,6 +1,8 @@
 package com.simbirsoft.homework.services.impl;
 
+import com.simbirsoft.homework.model.Department;
 import com.simbirsoft.homework.model.Employee;
+import com.simbirsoft.homework.repositories.DepartmentJpaRepository;
 import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import com.simbirsoft.homework.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeJpaRepository employeeJpaRepository;
+    @Autowired
+    private DepartmentJpaRepository departmentJpaRepository;
 
     @Transactional
     public List<Employee> findBySalary(int salary) {
@@ -43,6 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Transactional
     public Employee save(Employee employee) {
+        employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         return employeeJpaRepository.save(employee);
     }
 

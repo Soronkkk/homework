@@ -2,52 +2,66 @@ package com.simbirsoft.homework.controller;
 
 import com.simbirsoft.homework.data.Response;
 import com.simbirsoft.homework.model.Department;
-import com.simbirsoft.homework.services.impl.DepartmentServiceImpl;
+import com.simbirsoft.homework.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class DepartmentController {
 
     @Autowired
-    private DepartmentServiceImpl departmentServiceImpl;
+    private DepartmentService departmentService;
 
     private ResponseEntity<Object> getObjectResponseEntity() {
-        List<Department> departments = new ArrayList<>(departmentServiceImpl.findAll());
+        List<Department> departments = new ArrayList<>(departmentService.findAll());
         Response<List<Department>> response = new Response<>("success", departments);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/departments")
-    public ResponseEntity<Object> addDepartment(@Valid @RequestBody Department department) {
-        if (department.getId() == null) {
-            departmentServiceImpl.save(department);
+    public ResponseEntity<Object> addDepartment(@Valid @RequestBody Department department, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            return ResponseEntity.ok(errors);
         } else {
-            return ResponseEntity.badRequest().body(department);
+            if (department.getId() == null) {
+                departmentService.save(department);
+                return getObjectResponseEntity();
+            } else {
+                return ResponseEntity.badRequest().body(department);
+            }
         }
-        return getObjectResponseEntity();
     }
 
     @PutMapping("/departments")
-    public ResponseEntity<Object> updateDepartment(@Valid @RequestBody Department department) {
-        if (department.getId() != null && department.getId() > 0) {
-            departmentServiceImpl.save(department);
+    public ResponseEntity<Object> updateDepartment(@Valid @RequestBody Department department, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            return ResponseEntity.ok(errors);
         } else {
-            return ResponseEntity.badRequest().body(department);
+            if (department.getId() != null && department.getId() > 0) {
+                departmentService.save(department);
+                return getObjectResponseEntity();
+
+            } else {
+                return ResponseEntity.badRequest().body(department);
+            }
         }
-        return getObjectResponseEntity();
     }
 
+    // TODO: 18.10.2019 отдавать код 200 или 400 в зависимости от поведения
     @DeleteMapping("/departments/{id}")
     @ResponseBody
     public boolean deleteDepartment(@PathVariable long id) {
-        this.departmentServiceImpl.deleteById(id);
+        this.departmentService.deleteById(id);
         return true;
     }
 

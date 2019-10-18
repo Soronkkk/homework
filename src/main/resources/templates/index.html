@@ -18,36 +18,44 @@
         <div style="display:inline-table">
             <h2>Employee form</h2>
             <form id="employeeForm">
+                <!--                Идентификатор сотрудника-->
                 <div class="form-group">
                     <label for="employeeId">Employee ID:</label>
                     <input type="text" class="form-control" id="employeeId" placeholder="Enter employee ID"
                            name="employeeId">
                 </div>
+                <!--                Имя сотрудника-->
                 <div class="form-group">
                     <label for="employeeName">Employee name:</label>
                     <input type="text" class="form-control" id="employeeName" placeholder="Enter employee name"
                            name="employeeName">
+
                 </div>
+                <!--                Фамилия сотрудника-->
                 <div class="form-group">
                     <label for="employeeSurname">Employee surname:</label>
                     <input type="text" class="form-control" id="employeeSurname" placeholder="Enter employee surname"
                            name="employeeSurname">
                 </div>
+                <!--                Заработная плата сотрудника-->
                 <div class="form-group">
                     <label for="employeeSalary">Employee salary:</label>
                     <input type="text" class="form-control" id="employeeSalary" placeholder="Enter employee salary"
                            name="employeeSalary">
                 </div>
+                <!--                Должность сотрудника-->
                 <div class="form-group">
                     <label for="employeeJobTitle">Employee job title:</label>
                     <input type="text" class="form-control" id="employeeJobTitle" placeholder="Enter employee job title"
                            name="employeeJobTitle">
                 </div>
+                <!--                Отдел, в котором работает сотрудник-->
                 <div class="form-group">
                     <label for="employeeDepartment">Employee department:</label>
                     <input type="text" class="form-control" id="employeeDepartment" placeholder="Enter department name"
                            name="employeeDepartment">
                 </div>
+                <!--                Submit-->
                 <button type="submit" class="btn btn-primary">Submit employee</button>
             </form>
         </div>
@@ -130,7 +138,9 @@
                         <td th:text="${department.getName()}"></td>
                         <td th:text="${department.getDescription()}"></td>
                         <td>
-                            <button onclick="deleteDepartment(this.parentNode.parentNode);" class="btn btn-link">Delete</button>
+                            <button onclick="deleteDepartment(this.parentNode.parentNode);" class="btn btn-link">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                     </tbody>

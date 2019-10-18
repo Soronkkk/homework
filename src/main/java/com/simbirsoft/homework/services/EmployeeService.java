@@ -12,7 +12,7 @@ public interface EmployeeService {
      * @param salary заработная плата сотрудника.
      * @return список сотрудников.
      */
-    public List<Employee> findBySalary(int salary);
+    List<Employee> findBySalary(int salary);
 
     /**
      * Возвращает список сотрудников с указанной должностью.
@@ -20,7 +20,7 @@ public interface EmployeeService {
      * @param jobTitle должность сотрудника.
      * @return список сотрудников.
      */
-    public List<Employee> findByJobTitle(String jobTitle);
+    List<Employee> findByJobTitle(String jobTitle);
 
     /**
      * Возвращает список сотрудников с указанным именем.
@@ -28,21 +28,21 @@ public interface EmployeeService {
      * @param name имя сотрудника.
      * @return список сотрудников.
      */
-    public List<Employee> findByName(String name);
+    List<Employee> findByName(String name);
 
     /**
      * Возвращает список всех сотрудников.
      *
      * @return список сотрудников
      */
-    public List<Employee> findAll();
+    List<Employee> findAll();
 
     /**
      * Удаляет сотрудника по идентификатору.
      *
      * @param id индентификатор
      */
-    public void deleteById(Long id);
+    void deleteById(Long id);
 
     /**
      * Сохраняет сотрудника.
@@ -50,6 +50,6 @@ public interface EmployeeService {
      * @param employee сотрудник
      * @return сохраненный сотрудник
      */
-    public Employee save(Employee employee);
+    Employee save(Employee employee);
 
 }
