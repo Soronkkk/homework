@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+/**
+ * Мапит ошибки с фронта.
+ */
 public class ControllerUtils {
 
     static Map<String, String> getErrors(BindingResult bindingResult) {

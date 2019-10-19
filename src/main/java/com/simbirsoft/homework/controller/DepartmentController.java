@@ -1,6 +1,5 @@
 package com.simbirsoft.homework.controller;
 
-import com.simbirsoft.homework.config.WebSecurityConfig;
 import com.simbirsoft.homework.data.Response;
 import com.simbirsoft.homework.model.Department;
 import com.simbirsoft.homework.services.DepartmentService;

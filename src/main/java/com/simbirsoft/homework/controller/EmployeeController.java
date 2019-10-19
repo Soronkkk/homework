@@ -22,8 +22,6 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
-    @Autowired
-    private DepartmentService departmentService;
 
     private ResponseEntity<Object> getObjectResponseEntity() {
         List<Employee> employees = new ArrayList<>(employeeService.findAll());

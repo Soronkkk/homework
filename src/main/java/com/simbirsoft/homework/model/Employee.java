@@ -3,7 +3,9 @@ package com.simbirsoft.homework.model;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -14,7 +16,7 @@ public class Employee extends AbstractCreatedInfo {
      * Имя сотрудника.
      */
     @NotBlank(message = "{error.employee.name}")
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -60,7 +62,7 @@ public class Employee extends AbstractCreatedInfo {
     public Employee() {
     }
 
-    public Employee(Long id, String name, String surname, int salary, String jobTitle, String departmentName, String createdBy , LocalDate createdWhen) {
+    public Employee(Long id, String name, String surname, int salary, String jobTitle, String departmentName, String createdBy, LocalDate createdWhen) {
         super(id, createdBy, createdWhen);
         this.name = name;
         this.surname = surname;

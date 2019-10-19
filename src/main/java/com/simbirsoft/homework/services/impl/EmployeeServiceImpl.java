@@ -1,6 +1,5 @@
 package com.simbirsoft.homework.services.impl;
 
-import com.simbirsoft.homework.model.Department;
 import com.simbirsoft.homework.model.Employee;
 import com.simbirsoft.homework.repositories.DepartmentJpaRepository;
 import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
@@ -20,8 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private DepartmentJpaRepository departmentJpaRepository;
 
     @Transactional
-    public List<Employee> findBySalary(int salary) {
-        return employeeJpaRepository.findBySalary(salary);
+    public List<Employee> findAllBySalary(int salary) {
+        return employeeJpaRepository.findAllBySalary(salary);
     }
 
     @Transactional
@@ -43,7 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteById(Long id) {
         employeeJpaRepository.deleteById(id);
     }
-
 
     @Transactional
     public Employee save(Employee employee) {

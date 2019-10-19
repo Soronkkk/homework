@@ -33,5 +33,5 @@ public interface EmployeeJpaRepository extends JpaRepository<Employee, Long> {
      * @return сотрудники.
      */
     @Query("select e from  Employee e where e.salary = :salary")
-    List<Employee> findBySalary(int salary);
+    List<Employee> findAllBySalary(int salary);
 }

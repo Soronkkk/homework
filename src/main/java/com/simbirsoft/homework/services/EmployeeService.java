@@ -12,7 +12,7 @@ public interface EmployeeService {
      * @param salary заработная плата сотрудника.
      * @return список сотрудников.
      */
-    List<Employee> findBySalary(int salary);
+    List<Employee> findAllBySalary(int salary);
 
     /**
      * Возвращает список сотрудников с указанной должностью.
