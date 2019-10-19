@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,10 @@ public class EmployeeController {
             return ResponseEntity.ok(errors);
         } else {
             if (employee.getId() == null) {
+                // FIXME: 19.10.2019 hardcode
+                employee.setCreatedBy("ADMIN");
+                employee.setCreatedWhen(LocalDate.now());
+
                 employeeService.save(employee);
                 return getObjectResponseEntity();
             } else {
@@ -52,6 +57,10 @@ public class EmployeeController {
             return ResponseEntity.ok(errors);
         } else {
             if (employee.getId() != null && employee.getId() > 0) {
+                // FIXME: 19.10.2019 hardcode
+                employee.setCreatedBy("ADMIN");
+                employee.setCreatedWhen(LocalDate.now());
+
                 employeeService.save(employee);
                 return getObjectResponseEntity();
             } else {

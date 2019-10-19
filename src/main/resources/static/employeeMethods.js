@@ -94,7 +94,23 @@ $(document).ready(
                             "Put " + result.data.name
                             + " Successfully! <br></p>");
                     } else {
-                        $("#postResultDiv").html("<strong>Error</strong>");
+                        var errors = "";
+                        if(result.nameError != undefined){
+                            errors+=result.nameError;
+                        }
+                        if(result.surnameError != undefined){
+                            errors+="  " + result.surnameError;
+                        }
+                        if(result.departmentNameError != undefined){
+                            errors+="  " + result.departmentNameError;
+                        }
+                        if(result.salaryError != undefined){
+                            errors+="  " + result.salaryError;
+                        }
+                        if(result.jobTitleError != undefined){
+                            errors+="  " + result.jobTitleError;
+                        }
+                        $("#postResultDiv").html("<strong>" + errors + "</strong>");
                     }
                     console.log(result);
                 },

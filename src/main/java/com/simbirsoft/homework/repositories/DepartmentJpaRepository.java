@@ -24,4 +24,5 @@ public interface DepartmentJpaRepository extends JpaRepository<Department, Long>
     @Query("select d from Department d where d.description = :description")
     Department findByDescription(String description);
 
+
 }

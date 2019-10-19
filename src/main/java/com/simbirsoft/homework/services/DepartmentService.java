@@ -1,11 +1,16 @@
 package com.simbirsoft.homework.services;
 
 import com.simbirsoft.homework.model.Department;
+import com.simbirsoft.homework.model.DepartmentReport;
 
 import java.util.List;
 
 public interface DepartmentService {
 
+    /**
+     * Генерирует отчет для текущего отдела.
+     */
+    void generateReport(Department department);
 
     /**
      * Возвращает отдел по названию.
@@ -45,5 +50,6 @@ public interface DepartmentService {
      * @return сохраненный отдел.
      */
     Department save(Department department);
+
 
 }

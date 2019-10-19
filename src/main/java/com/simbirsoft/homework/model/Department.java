@@ -8,11 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "DEPARTMENT")
-public class Department extends AbstractIdEntity {
+public class Department extends AbstractCreatedInfo {
 
     /**
      * Название отдела.
@@ -38,11 +39,18 @@ public class Department extends AbstractIdEntity {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
+    /**
+     * Связь один ко многим.
+     * В отделе хранится список отчетов.
+     */
+    @OneToMany(mappedBy = "department")
+    private List<DepartmentReport> departmentReports;
+
     public Department() {
     }
 
-    public Department(Long id, String name, String description) {
-        super(id);
+    public Department(Long id, String name, String description, String createdBy ,LocalDate createdWhen) {
+        super(id, createdBy, createdWhen);
         this.name = name;
         this.description = description;
     }
@@ -63,4 +71,8 @@ public class Department extends AbstractIdEntity {
         this.name = name;
     }
 
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 }

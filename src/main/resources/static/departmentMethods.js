@@ -1,7 +1,5 @@
 $(document).ready(
-
     function () {
-
 
 
         // SUBMIT FORM
@@ -34,7 +32,15 @@ $(document).ready(
                             "" + result.data.name
                             + "Post Successfully! <br></p>");
                     } else {
-                        $("#postResultDiv").html("<strong>Error</strong>");
+                        var errors = "";
+                         if(result.nameError != undefined){
+                             errors+=result.nameError;
+                         }
+                         if(result.descriptionError != undefined){
+                             errors+="  " + result.descriptionError;
+                         }
+
+                        $("#postResultDiv").html("<strong>" + errors + "</strong>");
                     }
                     console.log(result);
                 },
@@ -91,7 +97,15 @@ $(document).ready(
                             "Put " + result.data.name
                             + " Successfully! <br></p>");
                     } else {
-                        $("#postResultDiv").html("<strong>Error</strong>");
+                        var errors = "";
+                        if(result.nameError != undefined){
+                            errors+=result.nameError;
+                        }
+                        if(result.descriptionError != undefined){
+                            errors+="  " + result.descriptionError;
+                        }
+
+                        $("#postResultDiv").html("<strong>" + errors + "</strong>");
                     }
                     console.log(result);
                 },

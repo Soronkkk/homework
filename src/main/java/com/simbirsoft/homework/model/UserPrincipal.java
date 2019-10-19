@@ -1,5 +1,6 @@
 package com.simbirsoft.homework.model;
 
+import com.simbirsoft.homework.constants.RoleConstants;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ADMIN"));
+        return Collections.singletonList(new SimpleGrantedAuthority(String.valueOf(RoleConstants.ROLE_ADMIN)));
     }
 
     @Override

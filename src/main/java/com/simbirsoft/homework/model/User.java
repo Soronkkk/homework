@@ -2,11 +2,14 @@ package com.simbirsoft.homework.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSON")
-public class User extends AbstractIdEntity {
+public class User extends AbstractCreatedInfo {
+
 
     /**
      * Логин пользователя.
@@ -32,11 +35,11 @@ public class User extends AbstractIdEntity {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-//    /**
-//     * Роли пользователя.
-//     */
-//    @Column(name = "ROLE", nullable = false)
-//    private List<Role> roles;
+    /**
+     * Роли пользователя.
+     */
+    @OneToMany(mappedBy = "user")
+    private List<Role> roles;
 
     public User() {
     }

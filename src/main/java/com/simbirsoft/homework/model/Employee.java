@@ -1,15 +1,14 @@
 package com.simbirsoft.homework.model;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "EMPLOYEES")
-public class Employee extends AbstractIdEntity {
+public class Employee extends AbstractCreatedInfo {
 
     /**
      * Имя сотрудника.
@@ -61,8 +60,8 @@ public class Employee extends AbstractIdEntity {
     public Employee() {
     }
 
-    public Employee(Long id, String name, String surname, int salary, String jobTitle, String departmentName) {
-        super(id);
+    public Employee(Long id, String name, String surname, int salary, String jobTitle, String departmentName, String createdBy , LocalDate createdWhen) {
+        super(id, createdBy, createdWhen);
         this.name = name;
         this.surname = surname;
         this.salary = salary;
