@@ -2,6 +2,7 @@ package com.simbirsoft.homework.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @MappedSuperclass
 public abstract class AbstractCreatedInfo {
@@ -72,5 +73,30 @@ public abstract class AbstractCreatedInfo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AbstractCreatedInfo{");
+        sb.append("id=").append(id);
+        sb.append(", createdBy='").append(createdBy).append('\'');
+        sb.append(", createdWhen=").append(createdWhen);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        AbstractCreatedInfo that = (AbstractCreatedInfo) object;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(createdBy, that.createdBy) &&
+                Objects.equals(createdWhen, that.createdWhen);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdBy, createdWhen);
     }
 }

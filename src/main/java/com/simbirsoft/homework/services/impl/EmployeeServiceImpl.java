@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +18,30 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeJpaRepository employeeJpaRepository;
     @Autowired
     private DepartmentJpaRepository departmentJpaRepository;
+
+    @Transactional
+    public List<Employee> findAllByContainsJobTitle(String jobTitle) {
+        jobTitle = jobTitle.replaceAll("\\d", "");
+        List<Employee> employees = new ArrayList<>();
+        for (Employee employee : employeeJpaRepository.findAll()) {
+            if (employee.getJobTitle().contains(jobTitle)) {
+                employees.add(employee);
+            }
+        }
+        return employees;
+    }
+
+    @Transactional
+    public List<Employee> findAllByContainsDepartmentName(String departmentName){
+        List<Employee> employees = new ArrayList<>();
+        for (Employee employee : employeeJpaRepository.findAll()) {
+            if (employee.getDepartmentName().contains(departmentName)) {
+                employees.add(employee);
+            }
+        }
+        return employees;
+    }
+
 
     @Transactional
     public List<Employee> findAllBySalary(int salary) {
@@ -48,5 +73,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         return employeeJpaRepository.save(employee);
     }
+
+    @Transactional
+    public List<Employee> findAllByDepartmentName(String departmentName) {
+        return employeeJpaRepository.findAllByDepartmentName(departmentName);
+    }
+
 
 }

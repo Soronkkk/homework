@@ -1,7 +1,9 @@
 package com.simbirsoft.homework.model;
 
 
+import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +12,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "DEPARTMENT")
 public class Department extends AbstractCreatedInfo {
+
+    @Autowired
+    private EmployeeJpaRepository employeeJpaRepository;
 
     /**
      * Название отдела.
@@ -72,7 +78,30 @@ public class Department extends AbstractCreatedInfo {
     }
 
 
-    public List<Employee> getEmployees() {
-        return employees;
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Department{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", employees=").append(employees);
+        sb.append(", departmentReports=").append(departmentReports);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Department that = (Department) object;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(employees, that.employees) &&
+                Objects.equals(departmentReports, that.departmentReports);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, employees, departmentReports);
     }
 }

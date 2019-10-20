@@ -52,4 +52,29 @@ public interface EmployeeService {
      */
     Employee save(Employee employee);
 
+    /**
+     * Выполняет поиск сотрудников по названию отдела.
+     *
+     * @param departmentName название отдела.
+     * @return сотрудники.
+     */
+    List<Employee> findAllByDepartmentName(String departmentName);
+
+
+    /**
+     * Ищет список сотрудников с похожим названием должности
+     *
+     * @param jobTitle должность.
+     * @return сотрудники.
+     */
+    public List<Employee> findAllByContainsJobTitle(String jobTitle);
+
+    /**
+     * Ищет список сотрудников с поможим названием отдела.
+     *
+     * @param departmentName название отдела.
+     * @return сотрудники.
+     */
+    public List<Employee> findAllByContainsDepartmentName(String departmentName);
+
 }

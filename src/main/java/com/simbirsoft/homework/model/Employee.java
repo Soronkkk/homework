@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -117,5 +118,36 @@ public class Employee extends AbstractCreatedInfo {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", departmentName='").append(departmentName).append('\'');
+        sb.append(", salary=").append(salary);
+        sb.append(", jobTitle='").append(jobTitle).append('\'');
+        sb.append(", department=").append(department);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Employee employee = (Employee) object;
+        return salary == employee.salary &&
+                Objects.equals(name, employee.name) &&
+                Objects.equals(surname, employee.surname) &&
+                Objects.equals(departmentName, employee.departmentName) &&
+                Objects.equals(jobTitle, employee.jobTitle) &&
+                Objects.equals(department, employee.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, departmentName, salary, jobTitle, department);
     }
 }
