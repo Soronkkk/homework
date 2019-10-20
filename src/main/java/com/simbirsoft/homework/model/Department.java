@@ -18,9 +18,6 @@ import java.util.Objects;
 @Table(name = "DEPARTMENT")
 public class Department extends AbstractCreatedInfo {
 
-    @Autowired
-    private EmployeeJpaRepository employeeJpaRepository;
-
     /**
      * Название отдела.
      */
