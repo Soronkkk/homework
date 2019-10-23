@@ -38,7 +38,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentReportJpaRepository.save(departmentReport);
     }
 
-    // TODO: 23.10.2019 фильтры по 2 параметрам
+
+
     @Transactional
     public Department findByDescription(String description) {
         return departmentJpaRepository.findByDescription(description);
@@ -50,8 +51,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
         departmentJpaRepository.deleteById(id);
+        return true;
     }
 
     @Transactional

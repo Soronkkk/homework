@@ -38,8 +38,9 @@ public interface DepartmentService {
      * Удаляет отдел по идентификатору.
      *
      * @param id идентификатор отдела.
+     * @return
      */
-    void deleteById(Long id);
+    boolean deleteById(Long id);
 
 
     /**

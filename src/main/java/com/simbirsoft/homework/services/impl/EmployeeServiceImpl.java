@@ -19,7 +19,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private DepartmentJpaRepository departmentJpaRepository;
 
-    // TODO: 23.10.2019 фильтры по несокльким параметрам
 
     @Transactional
     public List<Employee> findAllByContainsJobTitle(String jobTitle) {
@@ -66,8 +65,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
         employeeJpaRepository.deleteById(id);
+        return true;
     }
 
     @Transactional

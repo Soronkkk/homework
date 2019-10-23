@@ -41,8 +41,9 @@ public interface EmployeeService {
      * Удаляет сотрудника по идентификатору.
      *
      * @param id индентификатор
+     * @return
      */
-    void deleteById(Long id);
+    boolean deleteById(Long id);
 
     /**
      * Сохраняет сотрудника.

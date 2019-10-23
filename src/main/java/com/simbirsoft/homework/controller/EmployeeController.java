@@ -36,7 +36,6 @@ public class EmployeeController {
             return ResponseEntity.ok(errors);
         } else {
             if (employee.getId() == null) {
-                // FIXME: 19.10.2019 hardcode
                 employee.setCreatedBy("ADMIN");
                 employee.setCreatedWhen(LocalDate.now());
 
@@ -55,7 +54,6 @@ public class EmployeeController {
             return ResponseEntity.ok(errors);
         } else {
             if (employee.getId() != null && employee.getId() > 0) {
-                // FIXME: 19.10.2019 hardcode
                 employee.setCreatedBy("ADMIN");
                 employee.setCreatedWhen(LocalDate.now());
 
@@ -68,10 +66,12 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employees/{id}")
-    @ResponseBody
-    public boolean deleteEmployee(@PathVariable long id) {
-        this.employeeService.deleteById(id);
-        return true;
+    public ResponseEntity<Employee> deleteEmployee(@PathVariable long id) {
+        boolean isRemoved = employeeService.deleteById(id);
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

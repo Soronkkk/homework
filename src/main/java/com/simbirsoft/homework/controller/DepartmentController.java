@@ -35,7 +35,6 @@ public class DepartmentController {
             return ResponseEntity.ok(errors);
         } else {
             if (department.getId() == null) {
-                // FIXME: 19.10.2019 hardcode
                 department.setCreatedBy("ADMIN");
                 department.setCreatedWhen(LocalDate.now());
 
@@ -54,7 +53,6 @@ public class DepartmentController {
             return ResponseEntity.ok(errors);
         } else {
             if (department.getId() != null && department.getId() > 0) {
-                // FIXME: 19.10.2019 hardcode
                 department.setCreatedBy("ADMIN");
                 department.setCreatedWhen(LocalDate.now());
 
@@ -68,10 +66,12 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/departments/{id}")
-    @ResponseBody
-    public boolean deleteDepartment(@PathVariable long id) {
-        this.departmentService.deleteById(id);
-        return true;
+    public ResponseEntity<Department> deleteDepartment(@PathVariable long id) {
+        boolean isRemoved = departmentService.deleteById(id);
+        if(!isRemoved){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
