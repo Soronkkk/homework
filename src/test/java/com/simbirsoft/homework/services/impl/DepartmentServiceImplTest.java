@@ -34,28 +34,42 @@ public class DepartmentServiceImplTest {
 
     @Before
     public void init() throws Exception {
-
-
+        Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
+        departmentJpaRepository.save(department);
+        List<Department> departments = new ArrayList<>();
+        departments.add(department);
+        Mockito.when(departmentJpaRepository.findByDescription(Mockito.anyString())).thenReturn(department);
+        Mockito.when(departmentJpaRepository.findAll()).thenReturn(departments);
     }
 
 
     @Test
     public void findByDescription() {
+        String description = "desc";
+        Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
+        departmentService.save(department);
+        Assert.assertEquals(departmentJpaRepository.findByDescription(description), departmentService.findByDescription(description));
     }
 
     @Test
     public void findAll() {
-    }
-
-    @Test
-    public void deleteById() {
+        Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
+        departmentService.save(department);
+        Assert.assertArrayEquals(departmentJpaRepository.findAll().toArray(), departmentService.findAll().toArray());
     }
 
     @Test
     public void save() {
+        Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
+        departmentService.save(department);
+        Assert.assertEquals(departmentJpaRepository.findAll().size() + 1, 2);
     }
 
     @Test
     public void findByName() {
+        String name = "departmentName1";
+        Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
+        departmentService.save(department);
+        Assert.assertEquals(departmentJpaRepository.findByName(name), departmentService.findByName(name));
     }
 }

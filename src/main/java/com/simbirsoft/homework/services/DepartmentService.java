@@ -8,9 +8,8 @@ public interface DepartmentService {
 
     /**
      * Генерирует отчет для текущего отдела.
-     * @return
      */
-    boolean generateReport(Department department);
+    void generateReport(Department department);
 
     /**
      * Возвращает отдел по названию.

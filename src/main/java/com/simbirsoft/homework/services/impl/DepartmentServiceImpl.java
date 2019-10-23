@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,21 +27,18 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Deprecated
     @Transactional
-    public boolean generateReport(Department department) {
-        if(true){
-            List<Employee> employees = employeeJpaRepository.findAllByDepartmentName(department.getName());
-            int employeeCount = employees.size();
-            double averageEmployee = employees.stream().mapToDouble(Employee::getSalary).sum() / employeeCount;
-            DepartmentReport departmentReport = new DepartmentReport();
-            departmentReport.setEmployeesCount(employeeCount);
-            departmentReport.setAverageSalary(averageEmployee);
-            departmentReport.setDepartment(department);
-            departmentReportJpaRepository.save(departmentReport);
-            return true;
-        }
-        return false;
+    public void generateReport(Department department) {
+        List<Employee> employees = employeeJpaRepository.findAllByDepartmentName(department.getName());
+        int employeeCount = employees.size();
+        double averageEmployee = employees.stream().mapToDouble(Employee::getSalary).sum() / employeeCount;
+        DepartmentReport departmentReport = new DepartmentReport();
+        departmentReport.setEmployeesCount(employeeCount);
+        departmentReport.setAverageSalary(averageEmployee);
+        departmentReport.setDepartment(department);
+        departmentReportJpaRepository.save(departmentReport);
     }
 
+    // TODO: 23.10.2019 фильтры по 2 параметрам
     @Transactional
     public Department findByDescription(String description) {
         return departmentJpaRepository.findByDescription(description);

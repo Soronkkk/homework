@@ -19,6 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private DepartmentJpaRepository departmentJpaRepository;
 
+    // TODO: 23.10.2019 фильтры по несокльким параметрам
+
     @Transactional
     public List<Employee> findAllByContainsJobTitle(String jobTitle) {
         jobTitle = jobTitle.replaceAll("\\d", "");

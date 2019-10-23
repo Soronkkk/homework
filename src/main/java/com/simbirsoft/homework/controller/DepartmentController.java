@@ -67,7 +67,6 @@ public class DepartmentController {
         }
     }
 
-    // TODO: 18.10.2019 отдавать код 200 или 400 в зависимости от поведения
     @DeleteMapping("/departments/{id}")
     @ResponseBody
     public boolean deleteDepartment(@PathVariable long id) {
