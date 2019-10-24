@@ -25,7 +25,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private EmployeeJpaRepository employeeJpaRepository;
 
-    @Deprecated
     @Transactional
     public void generateReport(Department department) {
         List<Employee> employees = employeeJpaRepository.findAllByDepartmentName(department.getName());
