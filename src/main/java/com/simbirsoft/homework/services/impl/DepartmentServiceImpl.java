@@ -1,13 +1,12 @@
 package com.simbirsoft.homework.services.impl;
 
-import com.simbirsoft.homework.model.Department;
-import com.simbirsoft.homework.model.DepartmentReport;
-import com.simbirsoft.homework.model.Employee;
+import com.simbirsoft.homework.model.*;
 import com.simbirsoft.homework.repositories.DepartmentJpaRepository;
 import com.simbirsoft.homework.repositories.DepartmentReportJpaRepository;
 import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import com.simbirsoft.homework.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private EmployeeJpaRepository employeeJpaRepository;
 
+    @Deprecated
     @Transactional
     public void generateReport(Department department) {
         List<Employee> employees = employeeJpaRepository.findAllByDepartmentName(department.getName());

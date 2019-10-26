@@ -1,6 +1,7 @@
 package com.simbirsoft.homework.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -10,18 +11,20 @@ public abstract class AbstractCreatedInfo {
     /**
      * Константа. Дефолтное значение поля createdBy.
      */
-    private static final String DEFAULT_CREATED_BY = "GOD";
+    // TODO: 26.10.2019 сделать приватным, когда доделаю другие тудушки и эти константы больше не понадобятся.
+    public static final String DEFAULT_CREATED_BY = "GOD";
 
     /**
      * Константа. Дефолтное значение поля createdWhen.
      */
-    private static final LocalDate DEFUALT_CREATED_WHEN = LocalDate.now();
+    public static final LocalDate DEFAULT_CREATED_WHEN = LocalDate.now();
 
     /**
      * Идентификатор.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(value = 0)
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 
@@ -42,7 +45,7 @@ public abstract class AbstractCreatedInfo {
     }
 
     public AbstractCreatedInfo(Long id) {
-        this(id, DEFAULT_CREATED_BY, DEFUALT_CREATED_WHEN);
+        this(id, DEFAULT_CREATED_BY, DEFAULT_CREATED_WHEN);
     }
 
     public AbstractCreatedInfo(Long id, String createdBy, LocalDate createdWhen) {

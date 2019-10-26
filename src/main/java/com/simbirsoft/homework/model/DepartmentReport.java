@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Deprecated
 @Entity
 @Table(name = "DEPARTMENT_REPORT")
 public class DepartmentReport extends AbstractCreatedInfo {

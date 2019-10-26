@@ -1,9 +1,10 @@
 package com.simbirsoft.homework.controller;
 
 import com.simbirsoft.homework.data.Response;
+import com.simbirsoft.homework.model.AbstractCreatedInfo;
 import com.simbirsoft.homework.model.Employee;
-import com.simbirsoft.homework.services.DepartmentService;
 import com.simbirsoft.homework.services.EmployeeService;
+import com.simbirsoft.homework.utils.ControllerMapErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,21 +23,17 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    private ResponseEntity<Object> getObjectResponseEntity() {
-        List<Employee> employees = new ArrayList<>(employeeService.findAll());
-        Response<List<Employee>> response = new Response<>("success", employees);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
+    // TODO: 26.10.2019 принимать dto
     @PostMapping("/employees")
     public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            Map<String, String> errors = ControllerMapErrors.getErrors(bindingResult);
             return ResponseEntity.ok(errors);
         } else {
             if (employee.getId() == null) {
-                employee.setCreatedBy("ADMIN");
-                employee.setCreatedWhen(LocalDate.now());
+                // TODO: 26.10.2019 RequestContextHolder
+                employee.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
+                employee.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
 
                 employeeService.save(employee);
                 return getObjectResponseEntity();
@@ -47,15 +43,17 @@ public class EmployeeController {
         }
     }
 
+    // TODO: 26.10.2019 принимать dto
     @PutMapping("/employees")
     public ResponseEntity<Object> updateEmployee(@Valid @RequestBody Employee employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            Map<String, String> errors = ControllerMapErrors.getErrors(bindingResult);
             return ResponseEntity.ok(errors);
         } else {
-            if (employee.getId() != null && employee.getId() > 0) {
-                employee.setCreatedBy("ADMIN");
-                employee.setCreatedWhen(LocalDate.now());
+            if (employee.getId() != null) {
+                // TODO: 26.10.2019 RequestContextHolder
+                employee.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
+                employee.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
 
                 employeeService.save(employee);
                 return getObjectResponseEntity();
@@ -74,4 +72,10 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
+    private ResponseEntity<Object> getObjectResponseEntity() {
+        List<Employee> employees = new ArrayList<>(employeeService.findAll());
+        Response<List<Employee>> response = new Response<>("success", employees);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

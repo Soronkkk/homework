@@ -1,4 +1,4 @@
-package com.simbirsoft.homework.controller;
+package com.simbirsoft.homework.utils;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -10,9 +10,12 @@ import java.util.stream.Collectors;
 /**
  * Мапит ошибки с фронта.
  */
-public class ControllerUtils {
+public final class ControllerMapErrors {
 
-    static Map<String, String> getErrors(BindingResult bindingResult) {
+    private ControllerMapErrors() {
+    }
+
+    public static Map<String, String> getErrors(BindingResult bindingResult) {
         Collector<FieldError, ?, Map<String, String>> collector = Collectors.toMap(
                 fieldError -> fieldError.getField() + "Error",
                 FieldError::getDefaultMessage

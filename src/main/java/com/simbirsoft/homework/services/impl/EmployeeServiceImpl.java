@@ -20,6 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private DepartmentJpaRepository departmentJpaRepository;
 
 
+    // TODO: 26.10.2019 HQL, напистаь Query скрипт 
     @Transactional
     public List<Employee> findAllByContainsJobTitle(String jobTitle) {
         jobTitle = jobTitle.replaceAll("\\d", "");
@@ -32,6 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
+    // TODO: 26.10.2019 HQL, напистаь Query скрипт
     @Transactional
     public List<Employee> findAllByContainsDepartmentName(String departmentName){
         List<Employee> employees = new ArrayList<>();

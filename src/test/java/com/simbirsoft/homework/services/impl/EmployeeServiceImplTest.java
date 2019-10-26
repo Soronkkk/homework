@@ -35,7 +35,6 @@ public class EmployeeServiceImplTest {
     @Before
     public void init() throws Exception {
         Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
-        departmentJpaRepository.save(department);
 
         Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));

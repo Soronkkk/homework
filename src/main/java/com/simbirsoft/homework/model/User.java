@@ -51,7 +51,6 @@ public class User extends AbstractCreatedInfo {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.roles = new ArrayList<Role>(Collections.singleton(RoleConstants.ROLE_USER));
     }
 
 

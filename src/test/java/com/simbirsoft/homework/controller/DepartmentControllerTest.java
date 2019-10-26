@@ -35,6 +35,7 @@ public class DepartmentControllerTest {
 
     private static final ObjectMapper om = new ObjectMapper();
 
+    // TODO: 26.10.2019 Инициализировать 29.50
     @Autowired
     private MockMvc mockMvc;
 

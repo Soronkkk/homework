@@ -35,7 +35,6 @@ public class DepartmentServiceImplTest {
     @Before
     public void init() throws Exception {
         Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
-        departmentJpaRepository.save(department);
         List<Department> departments = new ArrayList<>();
         departments.add(department);
         Mockito.when(departmentJpaRepository.findByDescription(Mockito.anyString())).thenReturn(department);

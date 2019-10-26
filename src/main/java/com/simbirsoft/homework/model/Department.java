@@ -1,9 +1,7 @@
 package com.simbirsoft.homework.model;
 
 
-import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
