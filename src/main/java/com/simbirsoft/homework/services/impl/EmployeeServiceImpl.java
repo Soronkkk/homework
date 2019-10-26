@@ -1,5 +1,6 @@
 package com.simbirsoft.homework.services.impl;
 
+import com.simbirsoft.homework.model.AbstractCreatedInfo;
 import com.simbirsoft.homework.model.Employee;
 import com.simbirsoft.homework.repositories.DepartmentJpaRepository;
 import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
@@ -75,6 +76,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public Employee save(Employee employee) {
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
+        // TODO: 26.10.2019 RequestContextHolder
+        employee.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
+        employee.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
         return employeeJpaRepository.save(employee);
     }
 

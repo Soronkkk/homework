@@ -55,8 +55,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         return true;
     }
 
+    // TODO: 26.10.2019 RequestContextHolder
     @Transactional
     public Department save(Department department) {
+        department.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
+        department.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
         return departmentJpaRepository.save(department);
     }
 

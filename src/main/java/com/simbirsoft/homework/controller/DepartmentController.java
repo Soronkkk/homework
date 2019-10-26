@@ -1,14 +1,14 @@
 package com.simbirsoft.homework.controller;
 
 import com.simbirsoft.homework.data.Response;
-import com.simbirsoft.homework.model.AbstractCreatedInfo;
+import com.simbirsoft.homework.dto.DepartmentDTO;
 import com.simbirsoft.homework.model.Department;
 import com.simbirsoft.homework.services.DepartmentService;
 import com.simbirsoft.homework.utils.ControllerMapErrors;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,19 +23,24 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
-    // TODO: 26.10.2019 принимать dto
+    /**
+     * Добавляет отдел.
+     *
+     * @param departmentDTO dto отдела.
+     * @param bindingResult обязательный результат.
+     * @return responseEntity.
+     */
     @PostMapping("/departments")
-    public ResponseEntity<Object> addDepartment(@Valid @RequestBody Department department, BindingResult bindingResult, Model model) {
+    public ResponseEntity<Object> addDepartment(@Valid @RequestBody DepartmentDTO departmentDTO, BindingResult bindingResult) {
+        Department department = convertToEntity(departmentDTO);
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ControllerMapErrors.getErrors(bindingResult);
             return ResponseEntity.ok(errors);
         } else {
-            if (department.getId() == null) {
-                // TODO: 26.10.2019 RequestContextHolder
-                department.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
-                department.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
-
+            if (departmentDTO.getId() == null) {
                 departmentService.save(department);
                 return getObjectResponseEntity();
             } else {
@@ -44,35 +49,53 @@ public class DepartmentController {
         }
     }
 
-    // TODO: 26.10.2019 принимать dto
+    /**
+     * Обновляет отдел.
+     *
+     * @param departmentDTO dto отдела.
+     * @param bindingResult обязательный результат.
+     * @return responseEntity.
+     */
     @PutMapping("/departments")
-    public ResponseEntity<Object> updateDepartment(@Valid @RequestBody Department department, BindingResult bindingResult) {
+    public ResponseEntity<Object> updateDepartment(@Valid @RequestBody DepartmentDTO departmentDTO, BindingResult bindingResult) {
+        Department department = convertToEntity(departmentDTO);
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ControllerMapErrors.getErrors(bindingResult);
             return ResponseEntity.ok(errors);
         } else {
-            if (department.getId() != null) {
-
-                // TODO: 26.10.2019 RequestContextHolder
-                department.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
-                department.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
-
+            if (departmentDTO.getId() != null) {
                 departmentService.save(department);
                 return getObjectResponseEntity();
-
             } else {
                 return ResponseEntity.badRequest().body(department);
             }
         }
     }
 
+    /**
+     * Удаляет отдел по передаваемому идентификатору.
+     *
+     * @param id идентификатор.
+     * @return responseEntity с кодом статуса 200 или 404.
+     */
     @DeleteMapping("/departments/{id}")
     public ResponseEntity<Department> deleteDepartment(@PathVariable long id) {
         boolean isRemoved = departmentService.deleteById(id);
-        if(!isRemoved){
+        if (!isRemoved) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Конвертирует dto в сущность.
+     *
+     * @param departmentDTO dto сущности.
+     * @return сущность.
+     */
+    private Department convertToEntity(DepartmentDTO departmentDTO) {
+        Department department = modelMapper.map(departmentDTO, Department.class);
+        return department;
     }
 
     private ResponseEntity<Object> getObjectResponseEntity() {
