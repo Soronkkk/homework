@@ -45,5 +45,22 @@ public interface EmployeeJpaRepository extends JpaRepository<Employee, Long> {
     @Query("select e from Employee e where e.departmentName = :departmentName")
     List<Employee> findAllByDepartmentName(String departmentName);
 
+    /**
+     * Ищет список сотрудников с поможим названием отдела.
+     *
+     * @param departmentName название отдела.
+     * @return сотрудники.
+     */
+    @Query("select e from Employee e where e.departmentName like '%departmentName'")
+    List<Employee> findAllByContainsDepartmentName(String departmentName);
+
+    /**
+     * Ищет список сотрудников с похожим названием должности
+     *
+     * @param jobTitle должность.
+     * @return сотрудники.
+     */
+    @Query("select e from Employee e where e.jobTitle like '%jobTitle'")
+    public List<Employee> findAllByContainsJobTitle(String jobTitle);
 
 }

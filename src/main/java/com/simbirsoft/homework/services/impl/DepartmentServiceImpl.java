@@ -7,6 +7,7 @@ import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import com.simbirsoft.homework.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,10 +56,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         return true;
     }
 
-    // TODO: 26.10.2019 RequestContextHolder
     @Transactional
     public Department save(Department department) {
-        department.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        department.setCreatedBy(auth.getName());
         department.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
         return departmentJpaRepository.save(department);
     }

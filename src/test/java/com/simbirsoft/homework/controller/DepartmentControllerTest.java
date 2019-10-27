@@ -16,6 +16,9 @@ import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -35,12 +38,13 @@ public class DepartmentControllerTest {
 
     private static final ObjectMapper om = new ObjectMapper();
 
-    // TODO: 26.10.2019 Инициализировать 29.50
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @Autowired
+    WebApplicationContext webApplicationContext;
 
     @MockBean
     private DepartmentJpaRepository departmentJpaRepository;
@@ -51,6 +55,8 @@ public class DepartmentControllerTest {
         Department department = new Department(1L, "departmentName1", "description", "ADMIN", LocalDate.now());
         departmentJpaRepository.save(department);
         when(departmentJpaRepository.findById(1L)).thenReturn(Optional.of(department));
+
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
     @Test

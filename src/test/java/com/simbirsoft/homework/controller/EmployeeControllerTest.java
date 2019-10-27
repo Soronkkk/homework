@@ -17,6 +17,8 @@ import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
 
@@ -35,8 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class EmployeeControllerTest {
     private static final ObjectMapper om = new ObjectMapper();
 
-    // TODO: 26.10.2019 Инициализировать 29.50
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
@@ -45,11 +45,14 @@ public class EmployeeControllerTest {
     @MockBean
     private EmployeeJpaRepository employeeJpaRepository;
 
+    @Autowired
+    WebApplicationContext webApplicationContext;
 
     @Before
     public void init() throws Exception {
         Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
         employeeJpaRepository.save(employee);
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
 

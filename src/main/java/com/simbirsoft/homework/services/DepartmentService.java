@@ -9,6 +9,7 @@ public interface DepartmentService {
     /**
      * Генерирует отчет для текущего отдела.
      */
+    @Deprecated
     void generateReport(Department department);
 
     /**

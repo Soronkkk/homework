@@ -11,7 +11,6 @@ public abstract class AbstractCreatedInfo {
     /**
      * Константа. Дефолтное значение поля createdBy.
      */
-    // TODO: 26.10.2019 сделать приватным, когда доделаю другие тудушки и эти константы больше не понадобятся.
     public static final String DEFAULT_CREATED_BY = "GOD";
 
     /**

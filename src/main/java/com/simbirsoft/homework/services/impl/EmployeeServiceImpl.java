@@ -6,6 +6,8 @@ import com.simbirsoft.homework.repositories.DepartmentJpaRepository;
 import com.simbirsoft.homework.repositories.EmployeeJpaRepository;
 import com.simbirsoft.homework.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,29 +23,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private DepartmentJpaRepository departmentJpaRepository;
 
 
-    // TODO: 26.10.2019 HQL, напистаь Query скрипт 
     @Transactional
     public List<Employee> findAllByContainsJobTitle(String jobTitle) {
-        jobTitle = jobTitle.replaceAll("\\d", "");
-        List<Employee> employees = new ArrayList<>();
-        for (Employee employee : employeeJpaRepository.findAll()) {
-            if (employee.getJobTitle().contains(jobTitle)) {
-                employees.add(employee);
-            }
-        }
-        return employees;
+       return employeeJpaRepository.findAllByContainsJobTitle(jobTitle);
     }
 
-    // TODO: 26.10.2019 HQL, напистаь Query скрипт
     @Transactional
-    public List<Employee> findAllByContainsDepartmentName(String departmentName){
-        List<Employee> employees = new ArrayList<>();
-        for (Employee employee : employeeJpaRepository.findAll()) {
-            if (employee.getDepartmentName().contains(departmentName)) {
-                employees.add(employee);
-            }
-        }
-        return employees;
+    public List<Employee> findAllByContainsDepartmentName(String departmentName) {
+       return employeeJpaRepository.findAllByDepartmentName(departmentName);
     }
 
 
@@ -76,16 +63,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public Employee save(Employee employee) {
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
-        // TODO: 26.10.2019 RequestContextHolder
-        employee.setCreatedBy(AbstractCreatedInfo.DEFAULT_CREATED_BY);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        employee.setCreatedBy(auth.getName());
         employee.setCreatedWhen(AbstractCreatedInfo.DEFAULT_CREATED_WHEN);
         return employeeJpaRepository.save(employee);
     }
 
     @Transactional
     public List<Employee> findAllByDepartmentName(String departmentName) {
-        return employeeJpaRepository.findAllByDepartmentName(departmentName);
+        return employeeJpaRepository.findAllByContainsDepartmentName(departmentName);
     }
-
 
 }

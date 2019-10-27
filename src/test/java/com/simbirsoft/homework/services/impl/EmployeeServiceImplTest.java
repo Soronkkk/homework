@@ -34,9 +34,9 @@ public class EmployeeServiceImplTest {
 
     @Before
     public void init() throws Exception {
-        Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
+        Department department = new Department(1L, "departmentName1", "description", "admin", LocalDate.now());
 
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
@@ -52,7 +52,7 @@ public class EmployeeServiceImplTest {
     @Test
     public void findAllByDepartmentName() {
         String departmentName = "departmentName1";
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         employeeService.save(employee);
         Assert.assertArrayEquals(employeeJpaRepository.findAllByDepartmentName("jobTitle").toArray(), employeeService.findAllByDepartmentName(departmentName).toArray());
@@ -61,8 +61,9 @@ public class EmployeeServiceImplTest {
     @Test
     public void findAllByContainsDepartmentName(){
         String departmentName = "department";
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
+
         employeeService.save(employee);
         Assert.assertArrayEquals(employeeJpaRepository.findAllByDepartmentName("departmentName1").toArray(), employeeService.findAllByContainsDepartmentName(departmentName).toArray());
 
@@ -71,7 +72,7 @@ public class EmployeeServiceImplTest {
     @Test
     public void findAllByJobTitle() {
         String jobTitle = "jobTitle";
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         employeeService.save(employee);
         Assert.assertArrayEquals(employeeJpaRepository.findByJobTitle("jobTitle").toArray(), employeeService.findByJobTitle(jobTitle).toArray());
@@ -88,7 +89,7 @@ public class EmployeeServiceImplTest {
 
     @Test
     public void save() {
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         employeeService.save(employee);
         int newSize = 2;
@@ -98,7 +99,7 @@ public class EmployeeServiceImplTest {
     @Test
     public void findAllBySalary() {
         int salary = 1;
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         Department department = new Department(1L, "departmentName1", "description", "createdBy", LocalDate.now());
         departmentJpaRepository.save(department);
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
@@ -109,7 +110,7 @@ public class EmployeeServiceImplTest {
     @Test
     public void findAllByContainsJobTitle() {
         String jobTitle = "jobTitle1432";
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         employeeService.save(employee);
         Assert.assertArrayEquals(employeeJpaRepository.findByJobTitle("jobTitle").toArray(), employeeService.findAllByContainsJobTitle(jobTitle).toArray());
@@ -118,7 +119,7 @@ public class EmployeeServiceImplTest {
     @Test
     public void findByName() {
         String name = "name1";
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         employeeService.save(employee);
         Assert.assertArrayEquals(employeeJpaRepository.findByName("name1").toArray(), employeeService.findByName(name).toArray());
@@ -126,7 +127,7 @@ public class EmployeeServiceImplTest {
 
     @Test
     public void findAll() {
-        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "createdBy1", LocalDate.now());
+        Employee employee = new Employee(1L, "name1", "surname1", 1, "jobTitle", "departmentName1", "admin", LocalDate.now());
         employee.setDepartment(departmentJpaRepository.findByName(employee.getDepartmentName()));
         employeeService.save(employee);
         Assert.assertArrayEquals(employeeJpaRepository.findAll().toArray(), employeeService.findAll().toArray());
