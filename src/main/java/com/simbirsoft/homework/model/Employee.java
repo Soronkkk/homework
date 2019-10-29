@@ -56,7 +56,7 @@ public class Employee extends AbstractCreatedInfo {
      * Связь многие к одному.
      * Сотрудник принадлежит к одному отделу.
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "department_id", referencedColumnName = "ID")
     private Department department;
 

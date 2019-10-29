@@ -1,6 +1,7 @@
 package com.simbirsoft.homework.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
@@ -38,6 +39,7 @@ public class Department extends AbstractCreatedInfo {
      * В отделе хранится список сотрудников.
      */
     @OneToMany(mappedBy = "department")
+    @JsonBackReference
     private List<Employee> employees;
 
     /**
